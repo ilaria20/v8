@@ -1,0 +1,20 @@
+{
+  "name": "vef1-2021-v8",
+  "version": "1.0.0",
+  "main": "scripts.js",
+  "scripts": {
+    "dev": "browser-sync start --server --files main.js **/*.js styles.css index.html",
+    "copy": "cpy ./*.html ./build/",
+    "build": "concurrently npm:copy"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "browser-sync": "^2.27.5"
+  },
+  "dependencies": {
+    "concurrently": "^6.3.0",
+    "cpy-cli": "^3.1.1"
+  }
+}
