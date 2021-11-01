@@ -1,5 +1,6 @@
 // TODO hér vantar að sækja viðeigandi föll úr öðrum modules
 import { checkGame } from './lib/rock-paper-scissors.js';
+import { isValidBestOf } from './lib/rock-paper-scissors.js';
 import { playAsText } from './lib/rock-paper-scissors.js';
 import { computerPlay } from './lib/rock-paper-scissors.js';
 import { updateResultScreen } from './lib/ui.js';
@@ -84,7 +85,7 @@ function playRound(player) {
     finishGame.classList.remove('hidden');
   }
   // Sýnum niðurstöðuskjá
-  show('result');
+  // show('result');
 }
 
 /**
@@ -93,9 +94,8 @@ function playRound(player) {
  */
 function round(e) {
   // TODO útfæra
-  const player = e
-  console.log('bla')
-  
+  console.log('button');
+  show('play');
 }
 
 // Takki sem byrjar leik
