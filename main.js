@@ -1,6 +1,6 @@
 // TODO hér vantar að sækja viðeigandi föll úr öðrum modules
 import { checkGame } from './lib/rock-paper-scissors.js';
-import { isValidBestOf } from './lib/rock-paper-scissors.js';
+// import { isValidBestOf } from './lib/rock-paper-scissors.js';
 import { playAsText } from './lib/rock-paper-scissors.js';
 import { computerPlay } from './lib/rock-paper-scissors.js';
 import { updateResultScreen } from './lib/ui.js';
@@ -52,6 +52,8 @@ const games = [];
 function playRound(player) {
   // Komumst að því hvað tölva spilaði og athugum stöðu leiks
   const computer = computerPlay();
+  console.log('player'+player);
+  console.log('computer'+computer);
   const result = checkGame(player, computer);  
   if (result === 0 || result === -1) {
     computerWins += 1;
@@ -59,8 +61,12 @@ function playRound(player) {
     playerWins += 1;
   }
 
-  currentRound += 1;
-  totalRounds += 1;
+  if (result !== 0) {
+    currentRound += 1;
+  }
+  console.log('curr'+currentRound);
+  console.log('tot'+totalRounds);
+  console.log('result'+result);
 
   // Uppfærum result glugga áður en við sýnum, hér þarf að importa falli
   updateResultScreen({
@@ -94,7 +100,10 @@ function playRound(player) {
  */
 function round(e) {
   // TODO útfæra
+  totalRounds = e.target.id;
+  currentRound = 0;
   console.log('button');
+  console.log(totalRounds);
   show('play');
 }
 
