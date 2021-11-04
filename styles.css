@@ -103,7 +103,8 @@ h1 {
 .rounds__buttons {
   display: flex;
   flex-wrap: wrap;
-  justify-content: center
+  justify-content: center;
+  padding: 5px;
 }
 
 .rounds__buttons .button {

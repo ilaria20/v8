@@ -1,7 +1,5 @@
 // TODO hér vantar að sækja viðeigandi föll úr öðrum modules
 import { checkGame } from './lib/rock-paper-scissors.js';
-// import { isValidBestOf } from './lib/rock-paper-scissors.js';
-import { playAsText } from './lib/rock-paper-scissors.js';
 import { computerPlay } from './lib/rock-paper-scissors.js';
 import { updateResultScreen } from './lib/ui.js';
 import { createButtons } from './lib/ui.js';
@@ -52,10 +50,8 @@ const games = [];
 function playRound(player) {
   // Komumst að því hvað tölva spilaði og athugum stöðu leiks
   const computer = computerPlay();
-  console.log('player'+player);
-  console.log('computer'+computer);
   const result = checkGame(player, computer);  
-  if (result === 0 || result === -1) {
+  if (result === -1) {
     computerWins += 1;
   } else {
     playerWins += 1;
@@ -64,9 +60,13 @@ function playRound(player) {
   if (result !== 0) {
     currentRound += 1;
   }
-  console.log('curr'+currentRound);
-  console.log('tot'+totalRounds);
-  console.log('result'+result);
+  console.log('player', player)
+  console.log('computer', computer)
+  console.log('result', result)
+  // console.log('currentRound', currentRound)
+  // console.log('totalRounds', totalRounds)
+  // console.log('playerWins', playerWins)
+  // console.log('computerWins', computerWins)
 
   // Uppfærum result glugga áður en við sýnum, hér þarf að importa falli
   updateResultScreen({
@@ -84,14 +84,15 @@ function playRound(player) {
   // Ákveðum hvaða takka skuli sýna
   const finishGame = document.querySelector('.button.finishGame');
   const nextRound = document.querySelector('.button.nextRound');
-  if (currentRound === totalRounds) {
-    finishGame.classList.add('hidden');
-  } else {
+  if (currentRound !== totalRounds) {
     nextRound.classList.add('hidden');
-    finishGame.classList.remove('hidden');
+  } else {
+    finishGame()
   }
   // Sýnum niðurstöðuskjá
-  // show('result');
+  show('result');
+  finishGame.addEventListener('click', () => show('play'));
+  nextRound.addEventListener('click', () => show('rounds'));
 }
 
 /**
@@ -107,6 +108,7 @@ function round(e) {
   show('play');
 }
 
+show('start');
 // Takki sem byrjar leik
 document
   .querySelector('.start button')
@@ -120,13 +122,13 @@ createButtons(MAX_BEST_OF, round);
 // TODO
 document
   .querySelector('button.scissor')
-  .addEventListener('click', playRound(1));
+  .addEventListener('click', () => playRound(1));
 document
   .querySelector('button.paper')
-  .addEventListener('click', playRound(2));
+  .addEventListener('click',() => playRound(2));
 document
   .querySelector('button.rock')
-  .addEventListener('click', playRound(3));
+  .addEventListener('click', () => playRound(3));
 
 /**
  * Uppfærir stöðu yfir alla spilaða leiki þegar leik lýkur.
@@ -134,14 +136,15 @@ document
  */
 function finishGame() {
   // Bætum við nýjasta leik
-
+  
   // Uppfærum stöðu
 
   // Bætum leik við lista af spiluðum leikjum
 
   // Núllstillum breytur
-
+  
   // Byrjum nýjan leik!
+
 }
 
 // Næsta umferð og ljúka leik takkar
